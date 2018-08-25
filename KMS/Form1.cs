@@ -43,7 +43,7 @@ namespace KMS
                 if (text == "Windows 10 Pro for Workstations")
                 {
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J");
-                    process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com" );
+                    process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
@@ -59,7 +59,7 @@ namespace KMS
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                 
+
                 }
                 else if (text == "Windows 10 Enterprise")
                 {
@@ -85,16 +85,16 @@ namespace KMS
                 {
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk NW6C2-QMPVW-D7KKK-3GKT6-VCFB2");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato" );
+                    process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    button1.Enabled = true;
+
                 }
                 else if (text == "Windows 10 Professional Education")
                 {
-       
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk 6TP4R-GNPTD-KYYHQ-7B7DP-J447Y");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
 
@@ -103,7 +103,7 @@ namespace KMS
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 10 Home")
                 {
@@ -122,7 +122,7 @@ namespace KMS
 
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk PVMJN-6DFY6-9CCP6-7BKTT-D3WVR");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                 
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
@@ -132,224 +132,208 @@ namespace KMS
                 }
                 else if (text == "Windows 10 Home Single Language")
                 {
-        
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk 7HNRX-D7KGG-3K4RQ-4WPJ4-YTDFH");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                   
-                    process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato" );
+
+                    process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 10 Enterprise 2016 LTSB")
                 {
-               
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                   
-                    process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato" );
+                    process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 10 Enterprise 2015 LTSB")
                 {
-                   
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato >");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 8.1 Pro")
                 {
-                   
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk GCRJD-8NW9H-F2CDX-CCM8D-9D6T9");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                   
+
                 }
                 else if (text == "Windows 8.1 Enterprise")
                 {
-                  
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk MHF9N-XY6XB-WVXMC-BTDCT-MKKG7");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                  
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                   
+
                 }
                 else if (text == "Windows 8.1 Pro with Media Center")
                 {
-                  
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk 789NJ-TQK6T-6XTH8-J39CJ-J8D3P");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                   
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 8.1")
                 {
-                    
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk M9Q9P-WNJJT-6PXPY-DWX8H-6XWKK");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 8.1 China")
                 {
-                    
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk NCTT7-2RGK8-WMHRF-RY7YQ-JTXG3 ");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 8.1 Single Language")
                 {
-                    
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk BB6NG-PQ82V-VRDPW-8XVD2-V8P66 ");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                   
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 8 Pro")
                 {
-                    
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk NG4HW-VH26C-733KW-K6F98-J8CK4");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                   
+
                 }
                 else if (text == "Windows 8 Enterprise")
                 {
-                   
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk 32JNW-9KQ84-P47T8-D8GGY-CWCK7");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                   
+
                 }
                 else if (text == "Windows 8")
                 {
-                
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk BN3D2-R7TKB-3YPBD-8DRP2-27GG4");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                   
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 8 Pro with Media Center")
                 {
-                    
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk GNBB8-YVD74-QJHX6-27H4K-8QHDG");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 8 China")
                 {
-                    
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk 4K36P-JN4VD-GDC6V-KDT89-DYFKP ");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 8 Single Language")
                 {
-                    
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk 2WN2H-YGCQR-KFX6K-CD6TF-84YXQ ");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
-                    process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato" );
+                    process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                   
+
                 }
                 else if (text == "Windows 7 Professional")
                 {
-                    
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text == "Windows 7 Enterprise")
                 {
-                    
+
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk 33PXH-7Y6KF-2VJC9-XBBR8-HVTHH");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
-                    
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                     process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                     process.StandardInput.WriteLine("exit");
                     process.WaitForExit();
                     process.Close();
-                    
+
                 }
                 else if (text.Contains("Preview") || text.Contains("Evaluation"))
                 {
@@ -367,13 +351,18 @@ namespace KMS
                 else
                 {
                     MessageBox.Show("1、你的系统版本不对或系统激活机制遭到了破坏\r2、你安装的版本为测试评估版本", "by:慕若曦");
-
-                    button1.Enabled = true;
                 }
+
+                MessageBox.Show("您的"+text+"激活完成！", "by:慕若曦",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "by:慕若曦");
+
+            }
+            finally
+            {
+                button1.Text = "永久体验Windows和Office正版";
                 button1.Enabled = true;
             }
 
