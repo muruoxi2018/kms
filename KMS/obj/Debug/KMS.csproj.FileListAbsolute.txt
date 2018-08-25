@@ -1,0 +1,10 @@
+E:\C#\KMS\KMS\KMS\bin\Debug\KMS.exe.config
+E:\C#\KMS\KMS\KMS\bin\Debug\KMS.exe
+E:\C#\KMS\KMS\KMS\bin\Debug\KMS.pdb
+E:\C#\KMS\KMS\KMS\obj\Debug\KMS.csprojResolveAssemblyReference.cache
+E:\C#\KMS\KMS\KMS\obj\Debug\KMS.Form1.resources
+E:\C#\KMS\KMS\KMS\obj\Debug\KMS.Properties.Resources.resources
+E:\C#\KMS\KMS\KMS\obj\Debug\KMS.csproj.GenerateResource.Cache
+E:\C#\KMS\KMS\KMS\obj\Debug\KMS.csproj.CoreCompileInputs.cache
+E:\C#\KMS\KMS\KMS\obj\Debug\KMS.exe
+E:\C#\KMS\KMS\KMS\obj\Debug\KMS.pdb
