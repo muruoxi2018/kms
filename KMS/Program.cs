@@ -23,6 +23,7 @@ namespace KMS
             Application.EnableVisualStyles();
 
             WindowsPrincipal principal = new WindowsPrincipal(identity);
+            Application.SetCompatibleTextRenderingDefault(false);
             //判断当前登录用户是否为管理员
             if (principal.IsInRole(WindowsBuiltInRole.Administrator))
             {
