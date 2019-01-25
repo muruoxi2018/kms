@@ -9,6 +9,7 @@ namespace KMS
 {
     public partial class Form1 : Form
     {
+        public static string kmsserver = "kms.muruoxi.com";
         public Form1()
         {
             InitializeComponent();
@@ -21,12 +22,12 @@ namespace KMS
         {
             try
             {
+                #region 激活Windows
                 button1.Text = "正在激活中，请等待。。。";
                 button1.Enabled = false;
                 RegistryKey localMachine = Registry.LocalMachine;
                 string text = localMachine.OpenSubKey("software", true).OpenSubKey("microsoft", true).OpenSubKey("Windows NT", true).OpenSubKey("CurrentVersion", true).GetValue("ProductName").ToString();
                 localMachine.Close();
-               
                 string key = "";
                 switch (text)
                 {
@@ -180,18 +181,15 @@ namespace KMS
                 process.StartInfo.CreateNoWindow = true;
                 process.Start();
                 process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk {0}", key);
-                process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms smk.msdn123.com");
+                process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms {0}",kmsserver);
                 process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
                 process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                 process.StandardInput.WriteLine("exit");
                 process.WaitForExit();
                 process.Close();
-
-
-                /*
-                 * 激活Office
-                 */
-                
+                #endregion
+                #region 激活Office
+                object ProductReleaseIds = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration", "ProductReleaseIds", null);
                 object value = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration", "InstallationPath", null);
                 object value2 = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration", "ClientVersionToReport", null);
                 object value3 = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\16.0\\Common\\InstallRoot", "Path", null);
@@ -200,15 +198,29 @@ namespace KMS
                 object value6 = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Microsoft\\Office\\15.0\\Common\\InstallRoot", "Path", null);
                 object value7 = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\14.0\\Common\\InstallRoot", "Path", null);
                 object value8 = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Microsoft\\Office\\14.0\\Common\\InstallRoot", "Path", null);
-                if (value != null && value2.ToString().Substring(0, 2).ToString() == "16")
+                string officekey = "";
+                string patch = "";
+                if (value != null && value2.ToString().Substring(0, 2).ToString() == "16")   
                 {
                     string str = value.ToString() + "\\office16";
-                    string value9 = "cd /d " + str;
                     string str2 = value.ToString() + "\\root\\Licenses16";
                     string str3 = "cscript \"" + str + "\\ospp.vbs\" /inslic:";
-                    string text1 = str3 + "\"" + str2 + "\\ProPlusVL_KMS_Client-ppd.xrm-ms\"";
-                    string text2 = str3 + "\"" + str2 + "\\ProPlusVL_KMS_Client-ul.xrm-ms\"";
-                    string text3 = str3 + "\"" + str2 + "\\ProPlusVL_KMS_Client-ul-oob.xrm-ms\"";
+                    string text1 = "";
+                    string text2 = "";
+                    string text3 = "";
+                    if (value.ToString().Contains("ProPlus2019Retail"))
+                    {
+                        text1 = str3 + "\"" + str2 + "\\ProPlus2019VL_KMS_Client_AE-ppd.xrm-ms\"";
+                        text2 = str3 + "\"" + str2 + "\\ProPlus2019VL_KMS_Client-ul.xrm-ms\"";
+                        text3 = str3 + "\"" + str2 + "\\ProPlus2019VL_KMS_Client-ul-oob.xrm-ms\"";
+                    }
+                    else
+                    {
+                        text1 = str3 + "\"" + str2 + "\\ProPlusVL_KMS_Client-ppd.xrm-ms\"";
+                        text2 = str3 + "\"" + str2 + "\\ProPlusVL_KMS_Client-ul.xrm-ms\"";
+                        text3 = str3 + "\"" + str2 + "\\ProPlusVL_KMS_Client-ul-oob.xrm-ms\"";
+
+                    }
                     string text4 = str3 + "\"" + str2 + "\\client-issuance-bridge-office.xrm-ms\"";
                     string text5 = str3 + "\"" + str2 + "\\client-issuance-root.xrm-ms\"";
                     string text6 = str3 + "\"" + str2 + "\\client-issuance-root-bridge-test.xrm-ms\"";
@@ -267,154 +279,67 @@ namespace KMS
                     process1.StandardInput.WriteLine("exit");
                     process1.WaitForExit();
                     process1.Close();
-                    Process process2 = new Process();
-                    process2.StartInfo.FileName = "cmd.exe";
-                    process2.StartInfo.UseShellExecute = false;
-                    process2.StartInfo.RedirectStandardInput = true;
-                    process2.StartInfo.RedirectStandardOutput = true;
-                    process2.StartInfo.RedirectStandardError = true;
-                    process2.StartInfo.CreateNoWindow = true;
-                    process2.Start();
-                    process2.StandardInput.WriteLine(value9);
-                    process2.StandardInput.WriteLine("cscript ospp.vbs /inpkey:XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99");
-                    process2.StandardInput.WriteLine("cscript ospp.vbs /sethst:smk.msdn123.com");
-                    process2.StandardInput.WriteLine("cscript ospp.vbs /act");
-                    process2.StandardInput.WriteLine("cscript ospp.vbs /remhst");
-                    process2.StandardInput.WriteLine("exit");
-                    process2.WaitForExit();
-                    process2.Close();
-                }
-                else if (value3 != null)
-                {
-                    string value10 = "cd /d " + value3.ToString();
-                    Process process3 = new Process();
-                    process3.StartInfo.FileName = "cmd.exe";
-                    process3.StartInfo.UseShellExecute = false;
-                    process3.StartInfo.RedirectStandardInput = true;
-                    process3.StartInfo.RedirectStandardOutput = true;
-                    process3.StartInfo.RedirectStandardError = true;
-                    process3.StartInfo.CreateNoWindow = true;
-                    process3.Start();
-                    process3.StandardInput.WriteLine(value10);
-                    process3.StandardInput.WriteLine("cscript ospp.vbs /inpkey:XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99");
-                    process3.StandardInput.WriteLine("cscript ospp.vbs /sethst:smk.msdn123.com");
-                    process3.StandardInput.WriteLine("cscript ospp.vbs /act");
-                    process3.StandardInput.WriteLine("cscript ospp.vbs /remhst");
-                    process3.StandardInput.WriteLine("exit");
-                    process3.WaitForExit();
-                    process3.Close();
 
+                    patch = "cd /d " + value.ToString() + "\\office16";
+                    if (value.ToString().Contains("ProPlus2019Retail"))
+                    {
+                        officekey = "NMMKJ-6RK4F-KMJVX-8D9MJ-6MWKP";
+                    }
+                    else
+                    {
+                        officekey = "XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99";
+                    }
+                   
+                }
+                if (value3 != null)
+                {
+                    patch = "cd /d " + value3.ToString();
+                    officekey = "XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99";
                 }
                 else if (value4 != null)
                 {
-                    string value11 = "cd /d " + value4.ToString();
-                    Process process4 = new Process();
-                    process4.StartInfo.FileName = "cmd.exe";
-                    process4.StartInfo.UseShellExecute = false;
-                    process4.StartInfo.RedirectStandardInput = true;
-                    process4.StartInfo.RedirectStandardOutput = true;
-                    process4.StartInfo.RedirectStandardError = true;
-                    process4.StartInfo.CreateNoWindow = true;
-                    process4.Start();
-                    process4.StandardInput.WriteLine(value11);
-                    process4.StandardInput.WriteLine("cscript ospp.vbs /inpkey:XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99");
-                    process4.StandardInput.WriteLine("cscript ospp.vbs /sethst:smk.msdn123.com");
-                    process4.StandardInput.WriteLine("cscript ospp.vbs /act");
-                    process4.StandardInput.WriteLine("cscript ospp.vbs /remhst");
-                    process4.StandardInput.WriteLine("exit");
-                    process4.WaitForExit();
-                    process4.Close();
+                    patch = "cd /d " + value4.ToString();
+                    officekey = "XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99";
                 }
                 else if (value5 != null)
                 {
-                    string value12 = "cd /d " + value5.ToString();
-
-                    Process process5 = new Process();
-                    process5.StartInfo.FileName = "cmd.exe";
-                    process5.StartInfo.UseShellExecute = false;
-                    process5.StartInfo.RedirectStandardInput = true;
-                    process5.StartInfo.RedirectStandardOutput = true;
-                    process5.StartInfo.RedirectStandardError = true;
-                    process5.StartInfo.CreateNoWindow = true;
-                    process5.Start();
-                    process5.StandardInput.WriteLine(value12);
-                    process5.StandardInput.WriteLine("cscript ospp.vbs /inpkey:YC7DK-G2NP3-2QQC3-J6H88-GVGXT");
-                    process5.StandardInput.WriteLine("cscript ospp.vbs /sethst:smk.msdn123.com");
-                    process5.StandardInput.WriteLine("cscript ospp.vbs /act");
-                    process5.StandardInput.WriteLine("cscript ospp.vbs /remhst");
-                    process5.StandardInput.WriteLine("exit");
-                    process5.WaitForExit();
-                    process5.Close();
+                    patch = "cd /d " + value5.ToString();
+                    officekey = "YC7DK-G2NP3-2QQC3-J6H88-GVGXT";
                 }
                 else if (value6 != null)
                 {
-                    string value13 = "cd /d " + value6.ToString();
-                    Process process6 = new Process();
-                    process6.StartInfo.FileName = "cmd.exe";
-                    process6.StartInfo.UseShellExecute = false;
-                    process6.StartInfo.RedirectStandardInput = true;
-                    process6.StartInfo.RedirectStandardOutput = true;
-                    process6.StartInfo.RedirectStandardError = true;
-                    process6.StartInfo.CreateNoWindow = true;
-                    process6.Start();
-                    process6.StandardInput.WriteLine(value13);
-                    process6.StandardInput.WriteLine("cscript ospp.vbs /inpkey:YC7DK-G2NP3-2QQC3-J6H88-GVGXT");
-                    process6.StandardInput.WriteLine("cscript ospp.vbs /sethst:smk.msdn123.com");
-                    process6.StandardInput.WriteLine("cscript ospp.vbs /act");
-                    process6.StandardInput.WriteLine("cscript ospp.vbs /remhst");
-                    process6.StandardInput.WriteLine("exit");
-                    process6.WaitForExit();
-                    process6.Close();
+                    patch = "cd /d " + value6.ToString();
+                    officekey = "YC7DK-G2NP3-2QQC3-J6H88-GVGXT";
                 }
                 else if (value7 != null)
                 {
-                    string value14 = "cd /d " + value7.ToString();
-
-                    Process process7 = new Process();
-                    process7.StartInfo.FileName = "cmd.exe";
-                    process7.StartInfo.UseShellExecute = false;
-                    process7.StartInfo.RedirectStandardInput = true;
-                    process7.StartInfo.RedirectStandardOutput = true;
-                    process7.StartInfo.RedirectStandardError = true;
-                    process7.StartInfo.CreateNoWindow = true;
-                    process7.Start();
-                    process7.StandardInput.WriteLine(value14);
-                    process7.StandardInput.WriteLine("cscript ospp.vbs /inpkey:VYBBJ-TRJPB-QFQRF-QFT4D-H3GVB");
-                    process7.StandardInput.WriteLine("cscript ospp.vbs /sethst:smk.msdn123.com");
-                    process7.StandardInput.WriteLine("cscript ospp.vbs /act");
-                    process7.StandardInput.WriteLine("cscript ospp.vbs /remhst");
-                    process7.StandardInput.WriteLine("exit");
-                    process7.WaitForExit();
-                    process7.Close();
-
+                    patch = "cd /d " + value7.ToString();
+                    officekey = "VYBBJ-TRJPB-QFQRF-QFT4D-H3GVB";
                 }
                 else if (value8 != null)
                 {
-                    string value15 = "cd /d " + value8.ToString();
-
-                    Process process8 = new Process();
-                    process8.StartInfo.FileName = "cmd.exe";
-                    process8.StartInfo.UseShellExecute = false;
-                    process8.StartInfo.RedirectStandardInput = true;
-                    process8.StartInfo.RedirectStandardOutput = true;
-                    process8.StartInfo.RedirectStandardError = true;
-                    process8.StartInfo.CreateNoWindow = true;
-                    process8.Start();
-                    process8.StandardInput.WriteLine(value15);
-                    process8.StandardInput.WriteLine("cscript ospp.vbs /inpkey:VYBBJ-TRJPB-QFQRF-QFT4D-H3GVB");
-                    process8.StandardInput.WriteLine("cscript ospp.vbs /sethst:smk.msdn123.com");
-                    process8.StandardInput.WriteLine("cscript ospp.vbs /act");
-                    process8.StandardInput.WriteLine("cscript ospp.vbs /remhst");
-                    process8.StandardInput.WriteLine("exit");
-                    process8.WaitForExit();
-                    process8.Close();
+                    patch = "cd /d " + value8.ToString();
+                    officekey = "VYBBJ-TRJPB-QFQRF-QFT4D-H3GVB";
                 }
-                else
-                {
-                    MessageBox.Show("出错了！产生错误的原因可能有：\r\r1、您的MS Office尚未安装或安装版本不正确\r2、office激活机制遭到了破坏", "by：慕若曦");
-                }
-
+                
+                Process officeprocess = new Process();
+                officeprocess.StartInfo.FileName = "cmd.exe";
+                officeprocess.StartInfo.UseShellExecute = false;
+                officeprocess.StartInfo.RedirectStandardInput = true;
+                officeprocess.StartInfo.RedirectStandardOutput = true;
+                officeprocess.StartInfo.RedirectStandardError = true;
+                officeprocess.StartInfo.CreateNoWindow = true;
+                officeprocess.Start();
+                officeprocess.StandardInput.WriteLine(patch);
+                officeprocess.StandardInput.WriteLine("cscript ospp.vbs /inpkey:{0}",officekey);
+                officeprocess.StandardInput.WriteLine("cscript ospp.vbs /sethst:{0}", kmsserver);
+                officeprocess.StandardInput.WriteLine("cscript ospp.vbs /act");
+                officeprocess.StandardInput.WriteLine("cscript ospp.vbs /remhst");
+                officeprocess.StandardInput.WriteLine("exit");
+                officeprocess.WaitForExit();
+                officeprocess.Close();
                 MessageBox.Show("您的" + text + "和MS Offie激活完成！", "by:慕若曦", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                #endregion
             }
             catch (Exception ex)
             {
@@ -431,6 +356,8 @@ namespace KMS
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            label3.Parent = pictureBox1;
+            label4.Parent = pictureBox1;
             string str;
             if (Directory.Exists(Environment.GetEnvironmentVariable("systemroot").Substring(0, 3) + "Program Files (x86)"))
             {
@@ -536,6 +463,22 @@ namespace KMS
                     label1.Text += text + str;
                     break;
             }
+            try {
+                var ipAddress = System.Net.Dns.GetHostAddresses(kmsserver);
+                if (ipAddress[0].ToString() != "58.216.219.36")
+                {
+                    MessageBox.Show("您可能没有联网或者KMS服务器已经失效！\n如果是后者那我想这个工具可能不再适用，请使用新版本。", "警告：");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("您可能没有联网或者KMS服务器已经失效！\n如果是后者那我想这个工具可能不再适用，请使用新版本。", "警告：");
+            }
+               
         }
+
+        private void Label3_Click(object sender, EventArgs e) => Close();
+
+
     }
 }

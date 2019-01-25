@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("KMS")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("病毒吧专用KMS激活工具")]
+[assembly: AssemblyDescription("一个无毒无广告KMS激活工具，此版本为2019迎新春贺岁纪念版")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("病毒吧")]
 [assembly: AssemblyProduct("KMS")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright ©  2019 慕若曦&病毒吧")]
+[assembly: AssemblyTrademark("病毒吧")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 会使此程序集中的类型
