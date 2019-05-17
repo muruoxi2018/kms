@@ -1,0 +1,9 @@
+E:\Git\KMS\KMS\bin\Release\KMS.exe.config
+E:\Git\KMS\KMS\bin\Release\KMS.exe
+E:\Git\KMS\KMS\bin\Release\KMS.pdb
+E:\Git\KMS\KMS\obj\Release\KMS.Form1.resources
+E:\Git\KMS\KMS\obj\Release\KMS.Properties.Resources.resources
+E:\Git\KMS\KMS\obj\Release\KMS.csproj.GenerateResource.Cache
+E:\Git\KMS\KMS\obj\Release\KMS.csproj.CoreCompileInputs.cache
+E:\Git\KMS\KMS\obj\Release\KMS.exe
+E:\Git\KMS\KMS\obj\Release\KMS.pdb

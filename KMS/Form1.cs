@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.Win32;
+using System.Runtime.InteropServices;
 
 namespace KMS
 {
@@ -14,12 +15,21 @@ namespace KMS
         {
             InitializeComponent();
         }
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        [DllImport("user32.dll")]
+        public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+
+        bool beginMove = false;//初始化鼠标位置
+        int currentXPosition;
+        int currentYPosition;
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start("https://www.muruoxi.com");
 
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            TopMost = false;
             try
             {
                 #region 激活Windows
@@ -182,7 +192,7 @@ namespace KMS
                 process.Start();
                 process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ipk {0}", key);
                 process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /skms {0}",kmsserver);
-                process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ato");
+                process.StandardInput.WriteLine(@"cscript %windir%\\System32\\slmgr.vbs /ato >{0}",Application.StartupPath+@"\Windows.log");
                 process.StandardInput.WriteLine("cscript %windir%\\System32\\slmgr.vbs /ckms");
                 process.StandardInput.WriteLine("exit");
                 process.WaitForExit();
@@ -333,11 +343,12 @@ namespace KMS
                 officeprocess.StandardInput.WriteLine(patch);
                 officeprocess.StandardInput.WriteLine("cscript ospp.vbs /inpkey:{0}",officekey);
                 officeprocess.StandardInput.WriteLine("cscript ospp.vbs /sethst:{0}", kmsserver);
-                officeprocess.StandardInput.WriteLine("cscript ospp.vbs /act");
+                officeprocess.StandardInput.WriteLine("cscript ospp.vbs /act >{0}",Application.StartupPath +@"\Office.log");
                 officeprocess.StandardInput.WriteLine("cscript ospp.vbs /remhst");
                 officeprocess.StandardInput.WriteLine("exit");
                 officeprocess.WaitForExit();
                 officeprocess.Close();
+                
                 MessageBox.Show("您的" + text + "和MS Offie激活完成！", "by:慕若曦", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 #endregion
             }
@@ -350,6 +361,7 @@ namespace KMS
             {
                 button1.Text = "永久体验Windows和Office正版";
                 button1.Enabled = true;
+                this.TopMost = true;
             }
 
         }
@@ -358,6 +370,9 @@ namespace KMS
         {
             label3.Parent = pictureBox1;
             label4.Parent = pictureBox1;
+            label4.MouseDown += PictureBox1_MouseDown;
+            label4.MouseMove += PictureBox1_MouseMove;
+            label4.MouseUp += PictureBox1_MouseUp;
             string str;
             if (Directory.Exists(Environment.GetEnvironmentVariable("systemroot").Substring(0, 3) + "Program Files (x86)"))
             {
@@ -472,13 +487,42 @@ namespace KMS
             }
             catch
             {
-                MessageBox.Show("您可能没有联网或者KMS服务器已经失效！\n如果是后者那我想这个工具可能不再适用，请使用新版本。", "警告：");
+                MessageBox.Show("您可能没有联网！\n这个工具只能在联网状态下使用。", "警告：");
             }
                
         }
 
         private void Label3_Click(object sender, EventArgs e) => Close();
 
+        private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+{
+                beginMove = true;
+                currentXPosition = MousePosition.X;
+                currentYPosition = MousePosition.Y;
+            }
+        }
 
+        private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (beginMove)
+            {
+                Left += MousePosition.X - currentXPosition;
+                Top += MousePosition.Y - currentYPosition;
+                currentXPosition = MousePosition.X;
+                currentYPosition = MousePosition.Y;
+            }
+        }
+
+        private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                currentXPosition = 0; 
+                currentYPosition = 0;
+                beginMove = false;
+            }
+        }
     }
 }
